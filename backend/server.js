@@ -6,6 +6,7 @@ const swaggerSpec = require('./config/swagger');
 const { testConnection, syncDatabase } = require('./models');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const itemRoutes = require('./routes/itemRoutes');
 
 // Load environment variables
 dotenv.config();
@@ -100,6 +101,7 @@ app.get('/api/health', (req, res) => {
 // Use routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/items', itemRoutes);
 
 // 404 handler
 app.use((req, res) => {
