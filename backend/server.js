@@ -33,6 +33,12 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Import routes
+const authRoutes = require('./routes/authRoutes');
+
+// Use routes
+app.use('/api/auth', authRoutes);
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
