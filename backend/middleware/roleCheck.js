@@ -29,12 +29,12 @@ const roleCheck = (...allowedRoles) => {
 /**
  * Middleware to check if user is ADMIN
  */
-const isAdmin = roleCheck('ADMIN');
+const isAdmin = roleCheck('admin');
 
 /**
  * Middleware to check if user is ADMIN or STAFF
  */
-const isAdminOrStaff = roleCheck('ADMIN', 'STAFF');
+const isAdminOrStaff = roleCheck('admin', 'staff');
 
 module.exports = {
   roleCheck,

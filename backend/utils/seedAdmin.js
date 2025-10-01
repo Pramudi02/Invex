@@ -25,14 +25,14 @@ const seedAdmin = async () => {
     const admin = await User.create({
       username: 'admin',
       password: hashedPassword,
-      role: 'ADMIN'
+      role: 'admin'
     });
 
     console.log('✅ Admin user created successfully!');
     console.log('═══════════════════════════════════════');
     console.log('📧 Username: admin');
     console.log('🔑 Password: admin123');
-    console.log('👤 Role: ADMIN');
+    console.log('👤 Role: admin');
     console.log('═══════════════════════════════════════');
     console.log('⚠️  IMPORTANT: Change this password after first login!');
     

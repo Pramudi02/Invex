@@ -1,6 +1,11 @@
-const { User } = require('../models');
+const models = require('../models');
+const { User } = models;
 const { hashPassword, comparePassword } = require('../utils/hashPassword');
 const { generateToken } = require('../utils/generateToken');
+
+// Debug logging
+console.log('Auth Controller - Models loaded:', Object.keys(models));
+console.log('Auth Controller - User model:', User ? 'LOADED' : 'UNDEFINED');
 
 /**
  * Register a new user (Admin only)
@@ -34,7 +39,7 @@ const register = async (req, res) => {
     const user = await User.create({
       username,
       password: hashedPassword,
-      role: role || 'STAFF' // Default to STAFF if not specified
+      role: role || 'staff' // Default to staff if not specified
     });
 
     // Generate token
