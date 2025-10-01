@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const { testConnection, syncDatabase } = require('./models');
 
 // Load environment variables
 dotenv.config();
@@ -27,6 +28,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
     uptime: process.uptime(),
+    database: 'Connected',
     timestamp: new Date().toISOString()
   });
 });
@@ -51,7 +53,26 @@ app.use((err, req, res, next) => {
 // Start server
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
-  console.log(`📍 API URL: http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    // Test database connection
+    await testConnection();
+    
+    // Sync database (creates tables if they don't exist)
+    await syncDatabase(false); // Set to true to drop and recreate tables
+    
+    // Start listening
+    app.listen(PORT, () => {
+      console.log('═══════════════════════════════════════');
+      console.log(`✅ Server is running on port ${PORT}`);
+      console.log(`📍 API URL: http://localhost:${PORT}`);
+      console.log(`📊 Database: Connected & Synced`);
+      console.log('═══════════════════════════════════════');
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error.message);
+    process.exit(1);
+  }
+};
+
+startServer();
