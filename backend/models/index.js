@@ -1,5 +1,5 @@
 const { sequelize, testConnection } = require('../config/database');
-const User = require('./User');
+// const User = require('./User'); // Commented out - User model not created yet
 const Item = require('./Item');
 
 // Define relationships here if needed in future
@@ -20,6 +20,6 @@ module.exports = {
   sequelize,
   testConnection,
   syncDatabase,
-  User,
+  // User, // Commented out - User model not created yet
   Item
 };
