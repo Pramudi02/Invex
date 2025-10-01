@@ -140,9 +140,8 @@ const updateUserPassword = async (req, res) => {
       });
     }
 
-    // Hash and update password
-    const hashedPassword = await hashPassword(newPassword);
-    user.password = hashedPassword;
+    // Update password (will be hashed by beforeUpdate hook in model)
+    user.password = newPassword;
     await user.save();
 
     res.status(200).json({
@@ -277,9 +276,8 @@ const updateMyPassword = async (req, res) => {
       });
     }
 
-    // Hash and update password
-    const hashedPassword = await hashPassword(newPassword);
-    user.password = hashedPassword;
+    // Update password (will be hashed by beforeUpdate hook in model)
+    user.password = newPassword;
     await user.save();
 
     res.status(200).json({
