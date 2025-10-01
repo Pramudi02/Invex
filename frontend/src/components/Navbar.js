@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
+import { Icons } from './Icons';
 
 const Navbar = () => {
   const { user, logout, isAdmin } = useAuth();
@@ -19,21 +20,21 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/dashboard" className="navbar-brand">
-          📦 Inventory System
+          <Icons.Items style={{marginRight:8}} /> Inventory System
         </Link>
 
         <div className="navbar-menu">
           <Link to="/dashboard" className="nav-link">
-            🏠 Dashboard
+            <Icons.Dashboard style={{marginRight:6}} /> Dashboard
           </Link>
           
           <Link to="/items" className="nav-link">
-            📦 Items
+            <Icons.Items style={{marginRight:6}} /> Items
           </Link>
 
           {isAdmin() && (
             <Link to="/users" className="nav-link">
-              👥 Users
+              <Icons.Users style={{marginRight:6}} /> Users
             </Link>
           )}
         </div>
@@ -46,7 +47,7 @@ const Navbar = () => {
             </span>
           </span>
           <button onClick={handleLogout} className="logout-button">
-            🚪 Logout
+            Logout
           </button>
         </div>
       </div>

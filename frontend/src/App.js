@@ -6,9 +6,11 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Items from './pages/Items';
+import Users from './pages/Users';
 import Forbidden from './pages/Forbidden';
 import NotFound from './pages/NotFound';
 import './App.css';
+import './theme/dark-theme.css';
 
 function App() {
   // Layout for protected routes: shows Navbar and renders nested routes via Outlet
@@ -40,6 +42,7 @@ function App() {
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="items" element={<Items />} />
+            <Route path="users" element={<Users />} />
             <Route path="forbidden" element={<Forbidden />} />
             <Route path="*" element={<NotFound />} />
           </Route>

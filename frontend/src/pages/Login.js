@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Login.css';
+import { Icons } from '../components/Icons';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -53,13 +54,13 @@ const Login = () => {
     <div className="login-container">
       <div className="login-box">
         <div className="login-header">
-          <h1>📦 Inventory System</h1>
+          <h1><Icons.Items style={{marginRight:8}}/> Inventory System</h1>
           <p>Sign in to manage your inventory</p>
         </div>
 
         {error && (
           <div className="error-message">
-            ⚠️ {error}
+            {error}
           </div>
         )}
 

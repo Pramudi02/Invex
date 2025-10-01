@@ -76,12 +76,12 @@ export const AuthProvider = ({ children }) => {
 
   // Check if user is admin
   const isAdmin = () => {
-    return user?.role === 'ADMIN';
+    return user?.role?.toLowerCase() === 'admin';
   };
 
   // Check if user is staff
   const isStaff = () => {
-    return user?.role === 'STAFF';
+    return user?.role?.toLowerCase() === 'staff';
   };
 
   // Check if user is authenticated

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { Icons } from '../components/Icons';
 import api from '../services/api';
 import './Items.css';
 
 const Items = () => {
-  const { user } = useAuth();
+  const { user, isAdmin, isStaff } = useAuth();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -102,7 +103,7 @@ const Items = () => {
 
   const handleEditClick = (item) => {
     setSelectedItem(item);
-    if (user.role === 'STAFF') {
+    if (isStaff()) {
       setFormData({ quantity: item.quantity });
     } else {
       setFormData({
@@ -152,13 +153,13 @@ const Items = () => {
   return (
     <div className="items-container">
       <div className="items-header">
-        <h1>📦 Inventory Items</h1>
-        {user.role === 'ADMIN' && (
+        <h1><Icons.Items style={{marginRight:8}}/> Inventory Items</h1>
+        {isAdmin() && (
           <button 
             className="btn btn-primary"
             onClick={() => setShowAddModal(true)}
           >
-            + Add New Item
+            Add New Item
           </button>
         )}
       </div>
@@ -188,7 +189,7 @@ const Items = () => {
             className="price-input"
           />
           <button type="submit" className="btn btn-search">
-            🔍 Search
+            Search
           </button>
         </form>
         
@@ -197,7 +198,7 @@ const Items = () => {
             className="btn btn-warning"
             onClick={handleLowStock}
           >
-            ⚠️ Low Stock
+            Low Stock
           </button>
           <button 
             className="btn btn-secondary"
@@ -254,15 +255,15 @@ const Items = () => {
                       onClick={() => handleEditClick(item)}
                       title="Edit"
                     >
-                      ✏️
+                      <Icons.Edit />
                     </button>
-                    {user.role === 'ADMIN' && (
+                    {isAdmin() && (
                       <button 
                         className="btn-icon btn-delete"
                         onClick={() => handleDeleteItem(item.id)}
                         title="Delete"
                       >
-                        🗑️
+                        <Icons.Delete />
                       </button>
                     )}
                   </td>
@@ -363,7 +364,7 @@ const Items = () => {
               </button>
             </div>
             <form onSubmit={handleUpdateItem}>
-              {user.role === 'ADMIN' ? (
+              {isAdmin() ? (
                 <>
                   <div className="form-group">
                     <label>Name *</label>
