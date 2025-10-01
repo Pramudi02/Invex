@@ -18,13 +18,10 @@ const seedAdmin = async () => {
       process.exit(0);
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash('admin123', 10);
-
-    // Create admin user
+    // Create admin user (password will be hashed by model hook)
     const admin = await User.create({
       username: 'admin',
-      password: hashedPassword,
+      password: 'admin123',
       role: 'admin'
     });
 

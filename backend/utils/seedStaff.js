@@ -18,13 +18,10 @@ const seedStaff = async () => {
       process.exit(0);
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash('staff123', 10);
-
-    // Create staff user
+    // Create staff user (password will be hashed by model hook)
     const staff = await User.create({
       username: 'staff',
-      password: hashedPassword,
+      password: 'staff123',
       role: 'staff'
     });
 

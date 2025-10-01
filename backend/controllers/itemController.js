@@ -118,7 +118,7 @@ const updateItem = async (req, res) => {
     }
 
     // Role-based update logic
-    if (userRole === 'ADMIN') {
+    if (userRole === 'admin') {
       // Admin can update everything
       if (name !== undefined) {
         // Check if new name conflicts with existing item
@@ -136,7 +136,7 @@ const updateItem = async (req, res) => {
       if (description !== undefined) item.description = description;
       if (quantity !== undefined) item.quantity = quantity;
       if (price !== undefined) item.price = price;
-    } else if (userRole === 'STAFF') {
+    } else if (userRole === 'staff') {
       // Staff can only update quantity
       if (name !== undefined || description !== undefined || price !== undefined) {
         return res.status(403).json({
