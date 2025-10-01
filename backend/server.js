@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 const { testConnection, syncDatabase } = require('./models');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Load environment variables
 dotenv.config();
@@ -95,11 +97,9 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Import routes
-const authRoutes = require('./routes/authRoutes');
-
 // Use routes
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 // 404 handler
 app.use((req, res) => {

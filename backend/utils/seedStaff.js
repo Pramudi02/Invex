@@ -25,14 +25,14 @@ const seedStaff = async () => {
     const staff = await User.create({
       username: 'staff',
       password: hashedPassword,
-      role: 'STAFF'
+      role: 'staff'
     });
 
     console.log('✅ Staff user created successfully!');
     console.log('═══════════════════════════════════════');
     console.log('📧 Username: staff');
     console.log('🔑 Password: staff123');
-    console.log('👤 Role: STAFF');
+    console.log('👤 Role: staff');
     console.log('═══════════════════════════════════════');
     
     process.exit(0);
