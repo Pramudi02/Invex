@@ -51,24 +51,57 @@ const Dashboard = () => {
         </div>
 
         <div className="permissions-info">
-          <h3>Your Permissions:</h3>
+          <h3>Your Permissions</h3>
           <ul>
-            <li>View all inventory items</li>
-            <li>Search and filter items</li>
+            <li>
+              <span className="permission-icon allowed"><Icons.Check /></span>
+              View all inventory items
+            </li>
+            <li>
+              <span className="permission-icon allowed"><Icons.Check /></span>
+              Search and filter items
+            </li>
             {isAdmin() ? (
               <>
-                <li>Create new items</li>
-                <li>Update all item details</li>
-                <li>Delete items</li>
-                <li>Manage users</li>
-                <li>Full system access</li>
+                <li>
+                  <span className="permission-icon allowed"><Icons.Check /></span>
+                  Create new items
+                </li>
+                <li>
+                  <span className="permission-icon allowed"><Icons.Check /></span>
+                  Update all item details
+                </li>
+                <li>
+                  <span className="permission-icon allowed"><Icons.Check /></span>
+                  Delete items
+                </li>
+                <li>
+                  <span className="permission-icon allowed"><Icons.Check /></span>
+                  Manage users
+                </li>
+                <li>
+                  <span className="permission-icon allowed"><Icons.Check /></span>
+                  Full system access
+                </li>
               </>
             ) : (
               <>
-                <li>Update item quantities</li>
-                <li>Cannot create or delete items</li>
-                <li>Cannot modify prices or descriptions</li>
-                <li>Cannot manage users</li>
+                <li>
+                  <span className="permission-icon allowed"><Icons.Check /></span>
+                  Update item quantities
+                </li>
+                <li>
+                  <span className="permission-icon denied"><Icons.Times /></span>
+                  Cannot create or delete items
+                </li>
+                <li>
+                  <span className="permission-icon denied"><Icons.Times /></span>
+                  Cannot modify prices or descriptions
+                </li>
+                <li>
+                  <span className="permission-icon denied"><Icons.Times /></span>
+                  Cannot manage users
+                </li>
               </>
             )}
           </ul>

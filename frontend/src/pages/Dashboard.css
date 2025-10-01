@@ -1,11 +1,11 @@
 .dashboard-container {
-  padding: 20px;
-  max-width: 1200px;
+  padding: 32px 24px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .dashboard-content {
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.6s ease-in;
 }
 
 @keyframes fadeIn {
@@ -14,107 +14,128 @@
 }
 
 .welcome-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(16, 25, 53, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   color: white;
   padding: 40px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
 }
 
 .welcome-card h1 {
-  margin: 0 0 15px 0;
+  margin: 0 0 12px 0;
   font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .role-badge {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
+  color: #8892a6;
 }
 
 .badge {
   display: inline-block;
-  padding: 6px 16px;
-  border-radius: 20px;
+  padding: 6px 14px;
+  border-radius: 8px;
   font-weight: 600;
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  font-size: 13px;
+  letter-spacing: 0.3px;
 }
 
 .badge.admin {
-  background-color: #ff6b6b;
-  color: white;
+  background-color: rgba(108, 114, 255, 0.15);
+  color: #6c72ff;
 }
 
 .badge.staff {
-  background-color: #4ecdc4;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #8892a6;
 }
 
 .info-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
 .info-card {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid #e0e0e0;
+  background: rgba(16, 25, 53, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  transition: all 0.3s ease;
 }
 
 .info-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  border-color: rgba(108, 114, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 .info-icon {
-  font-size: 48px;
-  margin-bottom: 15px;
+  font-size: 40px;
+  margin-bottom: 16px;
+  color: #6c72ff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .info-card h3 {
   margin: 0 0 10px 0;
-  color: #333;
+  color: #ffffff;
   font-size: 20px;
+  font-weight: 600;
 }
 
 .info-card p {
-  margin: 0 0 15px 0;
-  color: #666;
+  margin: 0 0 20px 0;
+  color: #8892a6;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .card-link {
-  color: #667eea;
+  color: #6c72ff;
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
-  transition: color 0.3s;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .card-link:hover {
-  color: #764ba2;
+  color: #5a60e6;
+  gap: 10px;
 }
 
 .permissions-info {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e0e0e0;
+  background: rgba(16, 25, 53, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
 }
 
 .permissions-info h3 {
-  margin: 0 0 20px 0;
-  color: #333;
-  font-size: 22px;
+  margin: 0 0 24px 0;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .permissions-info ul {
@@ -124,12 +145,33 @@
 }
 
 .permissions-info li {
-  padding: 10px 0;
-  font-size: 15px;
-  color: #555;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 14px 0;
+  font-size: 14px;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .permissions-info li:last-child {
   border-bottom: none;
+}
+
+.permission-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.permission-icon.allowed {
+  color: #4ade80;
+}
+
+.permission-icon.denied {
+  color: #ff6b6b;
 }

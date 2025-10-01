@@ -1,4 +1,4 @@
-import { FaUsers, FaUserShield, FaUserTie, FaKey, FaEdit, FaTrashAlt, FaTachometerAlt, FaBoxes } from 'react-icons/fa';
+import { FaUsers, FaUserShield, FaUserTie, FaKey, FaEdit, FaTrashAlt, FaTachometerAlt, FaBoxes, FaCheck, FaTimes, FaSearch, FaExclamationTriangle } from 'react-icons/fa';
 import { FiUser } from 'react-icons/fi';
 
 export const Icons = {
@@ -11,6 +11,10 @@ export const Icons = {
   Dashboard: FaTachometerAlt,
   Items: FaBoxes,
   User: FiUser,
+  Check: FaCheck,
+  Times: FaTimes,
+  Search: FaSearch,
+  Warning: FaExclamationTriangle,
 };
 
 export default Icons;
