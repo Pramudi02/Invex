@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { Icons } from '../components/Icons';
+import ConfirmModal from '../components/ConfirmModal';
 import api from '../services/api';
 import './Items.css';
 
@@ -18,6 +19,8 @@ const Items = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -133,15 +136,25 @@ const Items = () => {
   };
 
   const handleDeleteItem = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this item?')) return;
-    
+    setItemToDelete(id);
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmDeleteItem = async () => {
     try {
-      await api.delete(`/items/${id}`);
+      await api.delete(`/items/${itemToDelete}`);
+      setShowDeleteConfirm(false);
+      setItemToDelete(null);
       fetchItems();
       showSuccess('Item deleted successfully!');
     } catch (err) {
       showError(err.response?.data?.message || 'Failed to delete item');
     }
+  };
+
+  const cancelDeleteItem = () => {
+    setShowDeleteConfirm(false);
+    setItemToDelete(null);
   };
 
   if (loading && items.length === 0) {
@@ -446,6 +459,17 @@ const Items = () => {
           </div>
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={showDeleteConfirm}
+        title="Delete Item"
+        message="Are you sure you want to delete this item? This action cannot be undone."
+        onConfirm={confirmDeleteItem}
+        onCancel={cancelDeleteItem}
+        confirmText="Delete"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 };

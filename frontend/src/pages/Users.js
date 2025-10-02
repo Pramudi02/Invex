@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
+import ConfirmModal from '../components/ConfirmModal';
 import api from '../services/api';
 import './Users.css';
 import { Icons } from '../components/Icons';
+
 const Users = () => {
   const { user, isAdmin } = useAuth();
   const { showSuccess, showError, showWarning } = useToast();
@@ -16,6 +18,8 @@ const Users = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -123,17 +127,25 @@ const Users = () => {
       return;
     }
 
-    if (!window.confirm(`Are you sure you want to delete user "${username}"?`)) {
-      return;
-    }
+    setUserToDelete({ userId, username });
+    setShowDeleteConfirm(true);
+  };
 
+  const confirmDeleteUser = async () => {
     try {
-      await api.delete(`/users/${userId}`);
+      await api.delete(`/users/${userToDelete.userId}`);
+      setShowDeleteConfirm(false);
+      setUserToDelete(null);
       fetchUsers();
       showSuccess('User deleted successfully!');
     } catch (err) {
       showError(err.response?.data?.message || 'Failed to delete user');
     }
+  };
+
+  const cancelDeleteUser = () => {
+    setShowDeleteConfirm(false);
+    setUserToDelete(null);
   };
 
   const getRoleBadgeClass = (role) => {
@@ -456,6 +468,17 @@ const Users = () => {
           </div>
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={showDeleteConfirm}
+        title="Delete User"
+        message={`Are you sure you want to delete user "${userToDelete?.username}"? This action cannot be undone.`}
+        onConfirm={confirmDeleteUser}
+        onCancel={cancelDeleteUser}
+        confirmText="Delete"
+        cancelText="Cancel"
+        type="danger"
+      />
     </div>
   );
 };
