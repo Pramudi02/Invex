@@ -10,12 +10,20 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <div className="dashboard-content">
         <div className="welcome-card">
-          <h1>Welcome back, {user?.username}!</h1>
-          <p className="role-badge">
-            Role: <span className={`badge ${user?.role.toLowerCase()}`}>
-              {user?.role}
-            </span>
-          </p>
+          <div className="welcome-text">
+            <h1>Welcome back, {user?.username}!</h1>
+            <p className="role-badge">
+              Role: <span className={`badge ${user?.role.toLowerCase()}`}>
+                {user?.role}
+              </span>
+            </p>
+          </div>
+          <img
+            src="/inventory.jpg"
+            alt="Inventory overview"
+            className="welcome-image"
+            loading="lazy"
+          />
         </div>
 
         <div className="info-cards">
