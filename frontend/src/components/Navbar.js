@@ -55,7 +55,7 @@ const Navbar = () => {
             </span>
           </span>
           <button onClick={handleLogout} className="logout-button">
-            Logout
+            <Icons.Logout style={{ marginRight: 8 }} /> Logout
           </button>
         </div>
       </div>
