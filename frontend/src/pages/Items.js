@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 import { Icons } from '../components/Icons';
 import api from '../services/api';
 import './Items.css';
 
 const Items = () => {
   const { user, isAdmin, isStaff } = useAuth();
+  const { showSuccess, showError } = useToast();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -95,9 +97,9 @@ const Items = () => {
       setShowAddModal(false);
       setFormData({ name: '', description: '', quantity: '', price: '' });
       fetchItems();
-      alert('Item created successfully!');
+      showSuccess('Item created successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to create item');
+      showError(err.response?.data?.message || 'Failed to create item');
     }
   };
 
@@ -124,9 +126,9 @@ const Items = () => {
       setSelectedItem(null);
       setFormData({ name: '', description: '', quantity: '', price: '' });
       fetchItems();
-      alert('Item updated successfully!');
+      showSuccess('Item updated successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to update item');
+      showError(err.response?.data?.message || 'Failed to update item');
     }
   };
 
@@ -136,9 +138,9 @@ const Items = () => {
     try {
       await api.delete(`/items/${id}`);
       fetchItems();
-      alert('Item deleted successfully!');
+      showSuccess('Item deleted successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to delete item');
+      showError(err.response?.data?.message || 'Failed to delete item');
     }
   };
 

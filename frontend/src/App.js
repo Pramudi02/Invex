@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ToastProvider } from './context/ToastContext';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -25,32 +26,34 @@ function App() {
 
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Public Route */}
-          <Route path="/login" element={<Login />} />
+      <ToastProvider>
+        <Router>
+          <Routes>
+            {/* Public Route */}
+            <Route path="/login" element={<Login />} />
 
-          {/* Protected routes grouped under PrivateRoute + layout */}
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <ProtectedLayout />
-              </PrivateRoute>
-            }
-          >
-            <Route index element={<Navigate to="/dashboard" replace />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="items" element={<Items />} />
-            <Route path="users" element={<Users />} />
-            <Route path="forbidden" element={<Forbidden />} />
+            {/* Protected routes grouped under PrivateRoute + layout */}
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <ProtectedLayout />
+                </PrivateRoute>
+              }
+            >
+              <Route index element={<Navigate to="/dashboard" replace />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="items" element={<Items />} />
+              <Route path="users" element={<Users />} />
+              <Route path="forbidden" element={<Forbidden />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+
+            {/* Fallback for any other unmatched public routes */}
             <Route path="*" element={<NotFound />} />
-          </Route>
-
-          {/* Fallback for any other unmatched public routes */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
+          </Routes>
+        </Router>
+      </ToastProvider>
     </AuthProvider>
   );
 }

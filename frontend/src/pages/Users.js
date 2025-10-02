@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import './Users.css';
 import { Icons } from '../components/Icons';
 const Users = () => {
   const { user, isAdmin } = useAuth();
+  const { showSuccess, showError, showWarning } = useToast();
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -66,15 +68,15 @@ const Users = () => {
       setShowAddModal(false);
       setFormData({ username: '', password: '', role: 'staff' });
       fetchUsers();
-      alert('User created successfully!');
+      showSuccess('User created successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to create user');
+      showError(err.response?.data?.message || 'Failed to create user');
     }
   };
 
   const handleEditClick = (userItem) => {
     if (userItem.id === user.id) {
-      alert('You cannot edit your own role');
+      showWarning('You cannot edit your own role');
       return;
     }
     setSelectedUser(userItem);
@@ -90,9 +92,9 @@ const Users = () => {
       setSelectedUser(null);
       setFormData({ username: '', password: '', role: 'staff' });
       fetchUsers();
-      alert('User role updated successfully!');
+      showSuccess('User role updated successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to update role');
+      showError(err.response?.data?.message || 'Failed to update role');
     }
   };
 
@@ -109,15 +111,15 @@ const Users = () => {
       setShowPasswordModal(false);
       setSelectedUser(null);
       setPasswordData({ newPassword: '' });
-      alert('Password updated successfully!');
+      showSuccess('Password updated successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to update password');
+      showError(err.response?.data?.message || 'Failed to update password');
     }
   };
 
   const handleDeleteUser = async (userId, username) => {
     if (userId === user.id) {
-      alert('You cannot delete your own account');
+      showWarning('You cannot delete your own account');
       return;
     }
 
@@ -128,9 +130,9 @@ const Users = () => {
     try {
       await api.delete(`/users/${userId}`);
       fetchUsers();
-      alert('User deleted successfully!');
+      showSuccess('User deleted successfully!');
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to delete user');
+      showError(err.response?.data?.message || 'Failed to delete user');
     }
   };
 
