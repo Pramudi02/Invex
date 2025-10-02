@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { Icons } from '../components/Icons';
 import ConfirmModal from '../components/ConfirmModal';
+import Spinner from '../components/Spinner';
 import api from '../services/api';
 import './Items.css';
 
@@ -160,7 +161,9 @@ const Items = () => {
   if (loading && items.length === 0) {
     return (
       <div className="items-container">
-        <div className="loading">Loading items...</div>
+        <div className="loading" style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
+          <Spinner />
+        </div>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import ConfirmModal from '../components/ConfirmModal';
+import Spinner from '../components/Spinner';
 import api from '../services/api';
 import './Users.css';
 import { Icons } from '../components/Icons';
@@ -166,7 +167,9 @@ const Users = () => {
   if (loading && users.length === 0) {
     return (
       <div className="users-container">
-        <div className="loading">Loading users...</div>
+        <div className="loading" style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
+          <Spinner />
+        </div>
       </div>
     );
   }
