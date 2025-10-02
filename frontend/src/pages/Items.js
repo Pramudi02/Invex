@@ -7,7 +7,7 @@ import api from '../services/api';
 import './Items.css';
 
 const Items = () => {
-  const { user, isAdmin, isStaff } = useAuth();
+  const { isAdmin, isStaff } = useAuth();
   const { showSuccess, showError } = useToast();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);

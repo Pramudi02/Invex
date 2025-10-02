@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import ConfirmModal from './ConfirmModal';
 import './Navbar.css';
@@ -7,7 +7,6 @@ import { Icons } from './Icons';
 
 const Navbar = () => {
   const { user, logout, isAdmin } = useAuth();
-  const navigate = useNavigate();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const handleLogout = () => {
@@ -29,7 +28,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/dashboard" className="navbar-brand">
-          <Icons.Items style={{marginRight:8}} /> Inventory System
+          <img src="/logo.png" alt="Invex" className="brand-logo" />
         </Link>
 
         <div className="navbar-menu">

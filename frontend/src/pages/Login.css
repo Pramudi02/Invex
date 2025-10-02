@@ -3,12 +3,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* Background image is set inline in Login.js to allow using /public without css-loader resolution */
   background: #080f25;
   padding: 20px;
 }
 
 .login-box {
-  background: rgba(16, 25, 53, 0.8);
+  /* Make the form slightly more transparent for a glass look */
+  background: rgba(16, 25, 53, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -16,7 +18,7 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   padding: 48px 40px;
   width: 100%;
-  max-width: 440px;
+  max-width: 640px;
 }
 
 .login-header {
@@ -24,15 +26,9 @@
   margin-bottom: 32px;
 }
 
-.login-header h1 {
-  margin: 0 0 8px 0;
-  color: #ffffff;
-  font-size: 28px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+.login-logo {
+  height: 60px;
+  margin-bottom: 8px;
 }
 
 .login-header p {

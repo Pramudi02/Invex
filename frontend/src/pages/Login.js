@@ -51,10 +51,18 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div
+      className="login-container"
+      style={{
+        backgroundImage: "url('/bg2.png')",
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className="login-box">
         <div className="login-header">
-          <h1><Icons.Items style={{marginRight:8}}/> Inventory System</h1>
+          <img src="/logo.png" alt="Invex" className="login-logo" />
           <p>Sign in to manage your inventory</p>
         </div>
 

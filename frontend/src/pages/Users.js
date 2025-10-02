@@ -36,7 +36,7 @@ const Users = () => {
       return;
     }
     fetchUsers();
-  }, [user, navigate]);
+  }, [user, navigate, isAdmin]);
 
   const fetchUsers = async () => {
     try {
